@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://auxesiscreative.com/sitemap.xml
