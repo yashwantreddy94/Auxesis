@@ -1421,3 +1421,42 @@ body:not(.dark-mode) .section-dark .step-card p{
     height:240px;
   }
 }
+
+.social-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+
+.social-links a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--white);
+  color:var(--secondary);
+  font-weight:700;
+  transition:0.25s ease;
+}
+
+.social-links a:hover{
+  background:var(--gold);
+  color:#fff;
+  border-color:var(--gold);
+  transform:translateY(-2px);
+}
+
+body.dark-mode .social-links a{
+  background:#1a1a1a;
+  border-color:#3a3a3a;
+  color:#ffffff;
+}
+
+body.dark-mode .social-links a:hover{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:#fff;
+}
