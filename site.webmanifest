@@ -1,0 +1,45 @@
+{
+  "name": "Auxesis Creative Solutions",
+  "short_name": "Auxesis",
+  "description": "Web development, digital products, and growth support for growing businesses.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#c9a227",
+  "icons": [
+    {
+      "src": "/assets/images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "Explore the services offered by Auxesis Creative Solutions.",
+      "url": "/services.html"
+    },
+    {
+      "name": "Our Work",
+      "short_name": "Work",
+      "description": "View selected projects and case studies.",
+      "url": "/work.html"
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Start a conversation about your project.",
+      "url": "/contact.html"
+    }
+  ]
+}
