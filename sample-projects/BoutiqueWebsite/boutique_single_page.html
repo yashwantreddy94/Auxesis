@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boutique Landing Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f7f1ea;--card:#fffaf5;--text:#1f1a17;--muted:#6f645d;--line:rgba(31,26,23,.12);--accent:#b57a5a;--accent2:#7f5d4f;--shadow:0 20px 60px rgba(31,26,23,.08)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,sans-serif;color:var(--text);background:radial-gradient(circle at top,#fff 0,var(--bg) 55%,#efe3d8 100%)}
+    a{text-decoration:none;color:inherit} img{max-width:100%;display:block}
+    .container{width:min(1180px,92%);margin:auto}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(247,241,234,.72);border-bottom:1px solid transparent;transition:.3s}
+    .nav.scrolled{border-bottom-color:var(--line);background:rgba(247,241,234,.92)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{font-family:'Cormorant Garamond',serif;font-size:2rem;letter-spacing:.08em}
+    .menu{display:flex;gap:26px;color:var(--muted);font-size:.95rem}
+    .menu a{position:relative}.menu a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--text);transition:.25s}.menu a:hover::after{width:100%}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:999px;border:1px solid var(--text);transition:.25s;font-weight:600}
+    .btn.primary{background:var(--text);color:#fff}.btn.primary:hover{transform:translateY(-2px);background:#000}.btn.ghost:hover{background:rgba(31,26,23,.04)}
+    .hero{padding:140px 0 90px;display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center;min-height:100vh}
+    .kicker{text-transform:uppercase;letter-spacing:.3em;color:var(--accent2);font-size:.75rem;margin-bottom:18px}
+    h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.6rem,8vw,7.2rem);line-height:.9;margin:0 0 18px}
+    .lead{font-size:1.05rem;line-height:1.8;color:var(--muted);max-width:54ch}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+    .stats{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}.stat strong{display:block;font-size:1.3rem}.stat span{color:var(--muted);font-size:.9rem}
+    .hero-art{position:relative;min-height:680px;display:grid;place-items:center}
+    .panel{position:absolute;border-radius:28px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.7)}
+    .panel.one{width:78%;height:78%;background:linear-gradient(180deg,#d9c2b1,#b98f78);transform:rotate(-4deg);right:0;top:6%}
+    .panel.two{width:62%;height:54%;background:linear-gradient(180deg,#f8eee6,#d9b7a4);left:0;bottom:10%;transform:rotate(7deg)}
+    .panel img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;opacity:.82}
+    .badge{position:absolute;left:4%;top:10%;background:rgba(255,250,245,.82);padding:14px 18px;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .badge small{display:block;color:var(--muted);margin-top:4px}
+    section{padding:86px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:28px}
+    .section-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.1rem,4vw,3.5rem);margin:0}
+    .section-head p{max-width:56ch;color:var(--muted);line-height:1.7;margin:0}
+    .grid{display:grid;gap:20px}.collections{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(4,1fr)}
+    .card{background:rgba(255,250,245,.8);border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow)}
+    .card .thumb{aspect-ratio:4/5;background:#ead9cd}.card .thumb img{width:100%;height:100%;object-fit:cover;transition:.45s}.card:hover .thumb img{transform:scale(1.05)}
+    .card .body{padding:18px}.meta{display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--muted);font-size:.92rem}.price{font-weight:700;color:var(--text)}
+    .story{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}.story-box{padding:28px;border-radius:28px;background:rgba(255,250,245,.84);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .accordion{display:grid;gap:12px}.acc{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}.acc button{width:100%;border:0;background:none;padding:18px 20px;display:flex;justify-content:space-between;font:inherit;font-weight:600;cursor:pointer;color:var(--text)}
+    .acc .content{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 20px;color:var(--muted);line-height:1.7}.acc.open .content{padding-bottom:18px}
+    .lookbook{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.look{border-radius:30px;overflow:hidden;min-height:420px;position:relative;box-shadow:var(--shadow)}.look img{width:100%;height:100%;object-fit:cover}.look .overlay{position:absolute;inset:auto 18px 18px 18px;background:rgba(255,250,245,.88);padding:18px;border-radius:20px;border:1px solid var(--line)}
+    .newsletter{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:28px;border-radius:28px;background:linear-gradient(135deg,#241c18,#3c2b24);color:#fff}.newsletter p{color:rgba(255,255,255,.72);margin:8px 0 0}.newsletter input{width:100%;padding:16px 18px;border-radius:999px;border:0;outline:0;font:inherit}
+    footer{padding:30px 0 50px;color:var(--muted)}
+    .reveal{opacity:0;transform:translateY(28px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+    @media (max-width: 980px){.hero,.story,.lookbook,.newsletter{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,1fr)}.collections{grid-template-columns:1fr 1fr}.menu{display:none}.hero{padding-top:120px}.hero-art{min-height:520px}}
+    @media (max-width: 640px){.products,.collections{grid-template-columns:1fr}.nav-inner{padding:14px 0}.brand{font-size:1.7rem}h1{font-size:3.2rem}.newsletter{padding:22px}}
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <div class="brand">ROSELINE</div>
+      <nav class="menu"><a href="#collections">Collections</a><a href="#story">Story</a><a href="#lookbook">Lookbook</a><a href="#contact">Contact</a></nav>
+      <a class="btn ghost" href="#contact">Book Visit</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="reveal">
+        <div class="kicker">Boutique couture studio</div>
+        <h1>Quiet luxury for modern women.</h1>
+        <p class="lead">A refined single-page boutique experience inspired by editorial fashion sites, with elegant typography, smooth motion, and a premium product showcase.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#collections">Shop Collection</a>
+          <a class="btn ghost" href="#lookbook">View Lookbook</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>120+</strong><span>crafted pieces</span></div>
+          <div class="stat"><strong>12</strong><span>signature categories</span></div>
+          <div class="stat"><strong>4.9/5</strong><span>client rating</span></div>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <div class="panel one"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=80" alt="Boutique fashion"></div>
+        <div class="panel two"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80" alt="Fashion model"></div>
+        <div class="badge"><strong>Autumn Edit</strong><small>Tailored silhouettes • handcrafted details</small></div>
+      </div>
+    </section>
+
+    <section id="collections" class="container">
+      <div class="section-head reveal"><h2>Collections</h2><p>Curated categories with a clean boutique grid, ideal for a fashion label, ethnic studio, or designer wear showroom.</p></div>
+      <div class="grid collections">
+        <article class="card reveal"><div class="thumb"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=80" alt="Evening wear"></div><div class="body"><div class="meta"><span>Evening Wear</span><span class="price">From ₹8,900</span></div></div></article>
+        <article class="card reveal"><div class="thumb"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80" alt="Bridal edit"></div><div class="body"><div class="meta"><span>Bridal Edit</span><span class="price">From ₹24,500</span></div></div></article>
+        <article class="card reveal"><div class="thumb"><img src="https://images.unsplash.com/photo-1464863979621-258859e62245?auto=format&fit=crop&w=1000&q=80" alt="Pret wear"></div><div class="body"><div class="meta"><span>Pret Wear</span><span class="price">From ₹4,200</span></div></div></article>
+      </div>
+    </section>
+
+    <section id="story" class="container story">
+      <div class="story-box reveal">
+        <div class="section-head" style="margin-bottom:16px"><h2>Our story</h2></div>
+        <p style="color:var(--muted);line-height:1.8;margin-top:0">Designed for boutique brands that want a luxurious, calm, and high-end look. This layout balances editorial storytelling with practical calls to action, making it easy to adapt for product launches or custom appointments.</p>
+        <div class="accordion" id="accordion">
+          <div class="acc open"><button type="button">Made-to-measure <span>+</span></button><div class="content" style="max-height:120px">Personalized fittings with custom adjustments for shape, drape, and finish.</div></div>
+          <div class="acc"><button type="button">Fabric curation <span>+</span></button><div class="content">A selection of silks, organza, chiffon, and textured blends for elevated collections.</div></div>
+          <div class="acc"><button type="button">Appointment first <span>+</span></button><div class="content">A boutique-first experience with private visits, styling guidance, and limited drops.</div></div>
+        </div>
+      </div>
+      <div class="story-box reveal">
+        <div class="section-head" style="margin-bottom:16px"><h2>Highlights</h2></div>
+        <ul style="padding-left:18px;color:var(--muted);line-height:2;margin:0">
+          <li>Hero section with premium image layering.</li>
+          <li>Responsive product and collection grid.</li>
+          <li>Accordion story blocks for boutique services.</li>
+          <li>Smooth scroll and reveal animations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="lookbook" class="container">
+      <div class="section-head reveal"><h2>Lookbook</h2><p>Use this area for featured outfits, seasonal drops, or campaign imagery that feels more editorial than e-commerce.</p></div>
+      <div class="lookbook">
+        <div class="look reveal"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80" alt="Lookbook model"><div class="overlay"><strong>Signature silhouette</strong><div style="color:var(--muted);margin-top:6px">Hand-finished detailing with a soft modern profile.</div></div></div>
+        <div class="grid" style="gap:20px">
+          <article class="card reveal"><div class="thumb"><img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a68?auto=format&fit=crop&w=1000&q=80" alt="Accessory"></div><div class="body"><div class="meta"><span>Accessories</span><span class="price">New</span></div></div></article>
+          <article class="card reveal"><div class="thumb"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80" alt="Studio scene"></div><div class="body"><div class="meta"><span>Studio Mood</span><span class="price">Campaign</span></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <div class="newsletter reveal">
+        <div><h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);margin:0">Join the private list.</h2><p>Capture emails for launches, new arrivals, and appointment bookings.</p></div>
+        <form id="signup" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end"><input type="email" id="email" placeholder="Email address" required><button class="btn primary" type="submit" style="border-color:#fff">Subscribe</button></form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px"><span>ROSELINE Boutique</span></div></footer>
+
+  <script>
+    const nav=document.getElementById('nav');
+    window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>10));
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    document.querySelectorAll('.acc button').forEach(btn=>btn.addEventListener('click',()=>{
+      const item=btn.parentElement; const content=item.querySelector('.content');
+      document.querySelectorAll('.acc').forEach(a=>{if(a!==item){a.classList.remove('open');a.querySelector('.content').style.maxHeight='0px';a.querySelector('button span').textContent='+';}});
+      item.classList.toggle('open');
+      content.style.maxHeight=item.classList.contains('open') ? content.scrollHeight+'px' : '0px';
+      btn.querySelector('span').textContent=item.classList.contains('open') ? '−' : '+';
+    }));
+    document.getElementById('signup').addEventListener('submit',e=>{e.preventDefault();alert('Thanks! You are on the list.');e.target.reset();});
+  </script>
+</body>
+</html>
