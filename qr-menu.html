@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Menu (as a Service) | Auxesis Creative Solutions</title>
+  <meta name="description" content="Contactless QR menu and restaurant management system for cafés, restaurants, hotels, resorts, bars, and cloud kitchens." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    :root{
+      --hero-bg: radial-gradient(circle at top left, rgba(201,162,39,.18), transparent 28%), radial-gradient(circle at top right, rgba(201,162,39,.08), transparent 24%), linear-gradient(180deg,#0b0b0f 0%,#121216 100%);
+      --panel-bg: rgba(255,255,255,.04);
+      --panel-border: rgba(255,255,255,.10);
+      --gold-soft: rgba(201,162,39,.12);
+      --shadow-xl: 0 26px 70px rgba(0,0,0,.24);
+    }
+    .qr-hero{position:relative;overflow:hidden;padding:110px 0 64px;background:var(--hero-bg)}
+    .qr-hero:before{content:'';position:absolute;inset:auto -10% -140px -10%;height:260px;background:radial-gradient(circle, rgba(201,162,39,.18), transparent 65%);filter:blur(18px);pointer-events:none}
+    .qr-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:stretch;position:relative;z-index:1}
+    .qr-hero-copy{display:flex;flex-direction:column;justify-content:center}
+    .qr-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2.7rem,5.2vw,5.2rem);line-height:.96;letter-spacing:-1.6px;margin:16px 0 18px}
+    .qr-hero .hero-text{max-width:680px;font-size:1.08rem;color:var(--muted)}
+    .qr-actions{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0 24px}
+    .qr-points{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .qr-point{padding:16px;border-radius:18px;background:var(--panel-bg);border:1px solid var(--panel-border);backdrop-filter:blur(10px);box-shadow:var(--shadow-xl)}
+    .qr-point strong{display:block;margin-bottom:4px;color:var(--text)}
+    .qr-showcase{display:grid;gap:16px}
+    .qr-band{padding:26px;border-radius:24px;background:linear-gradient(135deg, rgba(201,162,39,.14), rgba(255,255,255,.03));border:1px solid rgba(201,162,39,.18);box-shadow:var(--shadow-xl)}
+    .qr-video-shell{padding:16px;border-radius:28px;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid var(--panel-border);box-shadow:var(--shadow-xl)}
+    .qr-video-frame{position:relative;overflow:hidden;border-radius:22px;background:#000}
+    .qr-video-frame video{display:block;width:100%;aspect-ratio:16/9;height:auto;object-fit:cover}
+    .qr-video-caption{display:flex;justify-content:space-between;gap:16px;align-items:center;padding-top:12px;color:var(--muted);font-size:.95rem}
+    .qr-mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .qr-mini-stats .trust-item{background:var(--panel-bg);border-color:var(--panel-border);box-shadow:none;backdrop-filter:blur(10px)}
+    .qr-section-title{max-width:840px;margin:0 auto 34px;text-align:center}
+    .qr-section-title h2{font-family:'Outfit',sans-serif;font-size:clamp(2rem,4vw,3.35rem);line-height:1.02;letter-spacing:-1.2px;margin:0 0 12px}
+    .qr-section-title p{margin:0;color:var(--muted)}
+    .qr-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .qr-metric{padding:22px;border-radius:22px;background:var(--panel-bg);border:1px solid var(--panel-border)}
+    .qr-metric strong{display:block;font-family:'Outfit',sans-serif;font-size:2rem;color:var(--gold);margin-bottom:4px}
+    .qr-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .qr-card{padding:28px;border-radius:24px;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));border:1px solid var(--panel-border);box-shadow:var(--shadow-xl)}
+    .qr-card h3{font-family:'Outfit',sans-serif;font-size:1.45rem;margin:0 0 10px}
+    .qr-card p{margin:0;color:var(--muted)}
+    .qr-split{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:stretch}
+    .qr-panel{padding:28px;border-radius:24px;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.025));border:1px solid var(--panel-border);box-shadow:var(--shadow-xl)}
+    .qr-panel ul{margin:0;padding:0;list-style:none}
+    .qr-panel li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);color:var(--muted)}
+    .qr-panel li:last-child{border-bottom:none}
+    .qr-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .qr-shot{overflow:hidden;border-radius:22px;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));border:1px solid var(--panel-border)}
+    .qr-shot img{width:100%;aspect-ratio:4/3;object-fit:cover}
+    .qr-shot p{margin:0;padding:14px 16px;color:var(--muted);font-weight:600}
+    .qr-pricing{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .qr-price{padding:30px;border-radius:26px;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));border:1px solid var(--panel-border)}
+    .qr-price.featured{border-color:rgba(201,162,39,.35);box-shadow:var(--shadow-xl)}
+    .qr-price h3{font-family:'Outfit',sans-serif;font-size:1.6rem;margin:0 0 10px}
+    .qr-amount{font-family:'Outfit',sans-serif;font-size:3rem;line-height:1;color:var(--gold);margin:10px 0 12px}
+    .qr-price ul{margin:18px 0 0;padding:0;list-style:none}
+    .qr-price li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);color:var(--muted)}
+    .qr-price li:last-child{border-bottom:none}
+    .qr-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .qr-step{padding:22px;border-radius:22px;background:var(--panel-bg);border:1px solid var(--panel-border)}
+    .qr-step span{display:inline-flex;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;background:var(--gold-soft);color:var(--gold);font-weight:900;margin-bottom:14px}
+    .qr-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:34px;border-radius:28px;background:linear-gradient(135deg,#121317,#0a0b0e);border:1px solid var(--panel-border);box-shadow:var(--shadow-xl)}
+    .qr-cta p{margin:0;color:var(--muted);max-width:680px}
+    .qr-cta h2{font-family:'Outfit',sans-serif;font-size:clamp(2rem,4vw,3.4rem);line-height:1.02;margin:0 0 12px}
+    @media (max-width: 1080px){
+      .qr-hero-grid,.qr-split{grid-template-columns:1fr}
+      .qr-mini-stats,.qr-metrics,.qr-grid-3,.qr-gallery,.qr-pricing,.qr-steps{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 760px){
+      .qr-hero{padding-top:86px;padding-bottom:52px}
+      .qr-hero h1{font-size:clamp(2.4rem,10vw,4rem)}
+      .qr-points,.qr-mini-stats,.qr-metrics,.qr-grid-3,.qr-gallery,.qr-pricing,.qr-steps{grid-template-columns:1fr}
+      .qr-cta{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body data-page="qr-menu">
+  <header id="site-header"></header>
+
+  <main>
+    <section class="qr-hero">
+      <div class="container">
+        <div class="qr-hero-grid">
+          <div class="qr-hero-copy">
+            <span class="eyebrow">QR Menu (as a Service)</span>
+            <h1>Contactless digital ordering for modern restaurants.</h1>
+            <p class="hero-text">QR Menu helps cafés, restaurants, hotels, resorts, bars, food courts, and many more, serve faster with scan-to-order menus, real-time kitchen updates, and a simple admin dashboard.</p>
+            <div class="qr-actions">
+              <a href="#demo" class="btn btn-primary">View Demo</a>
+              <a href="#pricing" class="btn btn-secondary">See Pricing</a>
+            </div>
+            <div class="qr-points">
+              <div class="qr-point"><strong>No app required</strong><span>Customers scan and order instantly.</span></div>
+              <div class="qr-point"><strong>Real-time workflow</strong><span>Kitchen and admin stay updated live.</span></div>
+              <div class="qr-point"><strong>1–3 day setup</strong><span>Fast onboarding and go-live process.</span></div>
+            </div>
+          </div>
+
+          <div class="qr-showcase">
+            <div class="qr-band">
+              <div class="qr-video-shell">
+                <div class="qr-video-frame">
+                  <video controls poster="assets/video/image1.png">
+                    <source src="assets/video/QR-Menu-Sample-Video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="qr-mini-stats">
+              <div class="trust-item">
+                <strong>Customer View</strong>
+                <span>Scan QR code, browse menu, order instantly.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Kitchen Panel</strong>
+                <span>Orders flow directly to the kitchen.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Admin Dashboard</strong>
+                <span>Manage menu, orders, receipts, and revenue.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="qr-section-title">
+          <h2>Built for every part of the restaurant</h2>
+          <p>One system connects customers, kitchen staff, and management in a clean workflow.</p>
+        </div>
+        <div class="qr-metrics">
+          <div class="qr-metric"><strong>Contactless</strong><span>Modern, hygienic, and fast.</span></div>
+          <div class="qr-metric"><strong>Faster service</strong><span>Reduce waiting time and delays.</span></div>
+          <div class="qr-metric"><strong>Better accuracy</strong><span>Fewer manual order mistakes.</span></div>
+          <div class="qr-metric"><strong>Easy updates</strong><span>Edit menu items without reprinting.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo" class="section section-soft">
+      <div class="container">
+        <div class="qr-section-title">
+          <h2>Watch the product in action</h2>
+          <p>Show the full experience from QR scan to order management.</p>
+        </div>
+        <div class="qr-showcase">
+            <div class="qr-band">
+              <div class="qr-video-shell">
+                <div class="qr-video-frame">
+                  <video controls poster="assets/video/image1.png">
+                    <source src="assets/video/QR-Menu-Sample-Video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="qr-mini-stats">
+              <div class="trust-item">
+                <strong>Customer View</strong>
+                <span>Scan QR code, browse menu, order instantly.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Kitchen Panel</strong>
+                <span>Orders flow directly to the kitchen.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Admin Dashboard</strong>
+                <span>Manage menu, orders, receipts, and revenue.</span>
+              </div>
+            </div>
+        </div><br/>
+        <div class="qr-split">
+          <div class="qr-panel">
+            <span class="project-tag">Product overview</span>
+            <h3>Guest experience</h3>
+            <ul>
+              <li>Scan the QR code and open the digital menu on mobile.</li>
+              <li>Select items, add to cart, and place an order instantly.</li>
+              <li>No app download, no registration, no friction.</li>
+              <li>Automatic table and room number detection where needed.</li>
+            </ul>
+          </div>
+          <div class="qr-panel">
+            <span class="project-tag">Operations</span>
+            <h3>Kitchen and admin flow</h3>
+            <ul>
+              <li>Live incoming orders for kitchen staff.</li>
+              <li>One-click status changes and order updates.</li>
+              <li>Active orders, completed orders, and revenue tracking.</li>
+              <li>Receipt printing and order summaries for management.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="section">
+      <div class="container">
+        <div class="qr-section-title">
+          <h2>Client-ready screenshots</h2>
+          <p>Show the interface clearly so prospects can understand how polished and practical the system is.</p>
+        </div>
+        <div class="qr-gallery">
+          <div class="qr-shot"><img src="assets/video/image2.png" alt="QR Menu customer view screenshot"><p>Digital menu browsing</p></div>
+          <div class="qr-shot"><img src="image.jpg" alt="QR Menu kitchen panel screenshot"><p>Real-time incoming orders</p></div>
+          <div class="qr-shot"><img src="image.jpg" alt="QR Menu admin dashboard screenshot"><p>Business control center</p></div>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="qr-section-title">
+          <h2>Why businesses choose it</h2>
+          <p>These are the outcomes that matter most to owners and managers.</p>
+        </div>
+        <div class="qr-steps">
+          <div class="qr-step"><span>01</span><h3>Contactless ordering</h3><p>Modern and easy for guests to use on their own phones.</p></div>
+          <div class="qr-step"><span>02</span><h3>Faster service</h3><p>Reduce waiting time and speed up the order-to-kitchen process.</p></div>
+          <div class="qr-step"><span>03</span><h3>Better accuracy</h3><p>Minimize mistakes by sending orders directly into the system.</p></div>
+          <div class="qr-step"><span>04</span><h3>Easy menu updates</h3><p>Edit categories, prices, items, and images without printing new menus.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="qr-section-title">
+          <h2>Simple pricing</h2>
+          <p>Clear monthly and annual billing options for cafés, restaurants, bars, hotels, and resorts.</p>
+        </div>
+        <div class="qr-pricing">
+          <div class="qr-price featured">
+            <span class="project-tag">Annual Billing</span>
+            <h3>₹999/month</h3>
+            <p>Best for businesses that want the most value with yearly billing.</p>
+            <ul>
+              <li>Unlimited QR codes</li>
+              <li>Digital menu</li>
+              <li>Kitchen dashboard</li>
+              <li>Admin dashboard</li>
+              <li>Cloud hosting and support</li>
+            </ul>
+          </div>
+          <div class="qr-price">
+            <span class="project-tag">Monthly Billing</span>
+            <h3>₹1,299/month</h3>
+            <p>Flexible month-to-month plan for businesses that prefer lower commitment.</p>
+            <ul>
+              <li>Unlimited QR codes</li>
+              <li>Digital menu</li>
+              <li>Kitchen dashboard</li>
+              <li>Admin dashboard</li>
+              <li>Software updates and support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="qr-section-title">
+          <h2>What’s included</h2>
+          <p>Everything needed to run the QR ordering workflow smoothly.</p>
+        </div>
+        <div class="qr-grid-3">
+          <div class="qr-card"><h3>Unlimited QR codes</h3><p>Generate QR codes for tables or rooms as needed.</p></div>
+          <div class="qr-card"><h3>Digital menu</h3><p>Categories, images, descriptions, and live ordering.</p></div>
+          <div class="qr-card"><h3>Kitchen dashboard</h3><p>Live incoming orders and preparation workflow.</p></div>
+          <div class="qr-card"><h3>Admin dashboard</h3><p>Track orders, revenue, and business activity.</p></div>
+          <div class="qr-card"><h3>Receipt printing</h3><p>Print order receipts and generate summaries.</p></div>
+          <div class="qr-card"><h3>Cloud hosting</h3><p>Hosted system with updates and technical support.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="qr-section-title">
+          <h2>Optional add-ons</h2>
+          <p>Expand the system based on business needs.</p>
+        </div>
+        <div class="qr-grid-3">
+          <div class="qr-card"><h3>Online payment gateway</h3><p>Accept secure digital payments.</p></div>
+          <div class="qr-card"><h3>Waiter ordering app</h3><p>Staff-assisted ordering from tables.</p></div>
+          <div class="qr-card"><h3>Inventory management</h3><p>Track stock and item usage.</p></div>
+          <div class="qr-card"><h3>GST billing</h3><p>Support for compliant billing workflow.</p></div>
+          <div class="qr-card"><h3>Loyalty program</h3><p>Encourage repeat visits and retention.</p></div>
+          <div class="qr-card"><h3>Multi-branch management</h3><p>Manage multiple outlets centrally.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="qr-cta">
+          <div>
+            <h2>Upgrade your restaurant experience with QR ordering.</h2>
+            <p>Perfect for businesses that want faster service, better order accuracy, and a smoother customer journey.</p>
+          </div>
+          <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
