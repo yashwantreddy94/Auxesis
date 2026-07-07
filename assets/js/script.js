@@ -56,7 +56,7 @@ function initMobileMenu() {
 function initThemeToggle() {
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = document.querySelector('.theme-icon');
-  const savedTheme = localStorage.getItem('theme');
+  const savedTheme = localStorage.getItem('theme') || 'dark';
 
   const applyTheme = (theme) => {
     if (theme === 'dark') {
@@ -70,7 +70,7 @@ function initThemeToggle() {
     }
   };
 
-  applyTheme(savedTheme || 'light');
+  applyTheme(savedTheme);
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
