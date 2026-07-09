@@ -30,6 +30,12 @@
       "url": "/services.html"
     },
     {
+      "name": "Featured Products",
+      "short_name": "Products",
+      "description": "View QR Menu and News Portal CMS.",
+      "url": "/featured-product.html"
+    },
+    {
       "name": "Our Work",
       "short_name": "Work",
       "description": "View selected projects and case studies.",
