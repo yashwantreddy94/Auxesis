@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Portal CMS (Software as a Service) | Auxesis Creative Solutions</title>
+  <meta name="description" content="Professional News Website & Content Management System for news portals, media houses, magazines, blogs, and organizations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <style>
+    :root{
+      --hero-bg: radial-gradient(circle at top left, rgba(201,162,39,.16), transparent 28%), radial-gradient(circle at top right, rgba(201,162,39,.08), transparent 24%), linear-gradient(180deg,#0b0b0f 0%,#121216 100%);
+      --panel-bg: rgba(255,255,255,.04);
+      --panel-border: rgba(255,255,255,.10);
+      --gold-soft: rgba(201,162,39,.12);
+      --shadow-xl: 0 26px 70px rgba(0,0,0,.24);
+    }
+    .news-hero{position:relative;overflow:hidden;padding:110px 0 64px;background:var(--hero-bg)}
+    .news-hero:before{content:'';position:absolute;inset:auto -10% -140px -10%;height:260px;background:radial-gradient(circle, rgba(201,162,39,.18), transparent 65%);filter:blur(18px);pointer-events:none}
+    .news-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:stretch;position:relative;z-index:1}
+    .news-hero-copy{display:flex;flex-direction:column;justify-content:center}
+    .news-hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2.7rem,5.2vw,5.2rem);line-height:.96;letter-spacing:-1.6px;margin:16px 0 18px;color:var(--text)}
+    .news-hero .hero-text{max-width:680px;font-size:1.08rem;color:var(--muted)}
+    .news-actions{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0 24px}
+    .news-points{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .news-point{padding:16px;border-radius:18px;background:var(--panel-bg);border:1px solid var(--panel-border);backdrop-filter:blur(10px);box-shadow:var(--shadow-xl)}
+    .news-point strong{display:block;margin-bottom:4px;color:var(--text)}
+    .news-point span{color:var(--muted)}
+    .news-showcase{display:grid;gap:16px}
+    .news-band{padding:26px;border-radius:24px;background:linear-gradient(135deg, rgba(201,162,39,.14), rgba(255,255,255,.03));border:1px solid rgba(201,162,39,.18);box-shadow:var(--shadow-xl)}
+    .news-video-shell{padding:16px;border-radius:28px;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid var(--panel-border);box-shadow:var(--shadow-xl)}
+    .news-video-frame{position:relative;overflow:hidden;border-radius:22px;background:#000}
+    .news-video-frame video{display:block;width:100%;aspect-ratio:16/9;height:auto;object-fit:cover}
+    .news-mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .news-mini-stats .trust-item{background:var(--panel-bg);border:1px solid var(--panel-border);box-shadow:none;backdrop-filter:blur(10px);padding:18px;border-radius:18px}
+    .news-mini-stats .trust-item strong{display:block;color:var(--text);margin-bottom:4px}
+    .news-mini-stats .trust-item span{color:var(--muted)}
+    .news-section-title{max-width:900px;margin:0 auto 34px;text-align:center}
+    .news-section-title h2{font-family:'Outfit',sans-serif;font-size:clamp(2rem,4vw,3.35rem);line-height:1.02;letter-spacing:-1.2px;margin:0 0 12px;color:var(--text)}
+    .news-section-title p{margin:0;color:var(--muted)}
+    .news-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .news-card{padding:28px;border-radius:24px;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));border:1px solid var(--panel-border);box-shadow:var(--shadow-xl)}
+    .news-card h3{font-family:'Outfit',sans-serif;font-size:1.45rem;margin:0 0 10px;color:var(--text)}
+    .news-card p{margin:0;color:var(--muted)}
+    .news-list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+    .news-list li{padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(201,162,39,.12);color:var(--muted)}
+    .news-split{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:stretch}
+    .news-panel{padding:28px;border-radius:24px;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.025));border:1px solid var(--panel-border);box-shadow:var(--shadow-xl)}
+    .news-panel h3{color:var(--text)}
+    .news-panel ul{margin:0;padding:0;list-style:none}
+    .news-panel li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);color:var(--muted)}
+    .news-panel li:last-child{border-bottom:none}
+    .news-pricing{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .news-price{padding:30px;border-radius:26px;background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));border:1px solid var(--panel-border)}
+    .news-price.featured{border-color:rgba(201,162,39,.35);box-shadow:var(--shadow-xl)}
+    .news-price h3{font-family:'Outfit',sans-serif;font-size:1.6rem;margin:0 0 10px;color:var(--text)}
+    .news-amount{font-family:'Outfit',sans-serif;font-size:3rem;line-height:1;color:var(--gold);margin:10px 0 12px}
+    .news-price ul{margin:18px 0 0;padding:0;list-style:none}
+    .news-price li{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);color:var(--muted)}
+    .news-price li:last-child{border-bottom:none}
+    .news-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .news-step{padding:22px;border-radius:22px;background:var(--panel-bg);border:1px solid var(--panel-border)}
+    .news-step span{display:inline-flex;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;background:var(--gold-soft);color:var(--gold);font-weight:900;margin-bottom:14px}
+    .news-step h3{color:var(--text)}
+    .news-step p{color:var(--muted)}
+    .news-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:34px;border-radius:28px;background:linear-gradient(135deg,#121317,#0a0b0e);border:1px solid var(--panel-border);box-shadow:var(--shadow-xl)}
+    .news-cta p{margin:0;color:var(--muted);max-width:760px}
+    .news-cta h2{font-family:'Outfit',sans-serif;font-size:clamp(2rem,4vw,3.4rem);line-height:1.02;margin:0 0 12px;color:var(--text)}
+    body.dark-mode .news-hero{background:radial-gradient(circle at top left, rgba(201,162,39,.14), transparent 28%), radial-gradient(circle at top right, rgba(201,162,39,.08), transparent 24%), linear-gradient(180deg,#07080a 0%,#0e1014 100%)}
+    body.dark-mode .news-band,
+    body.dark-mode .news-video-shell,
+    body.dark-mode .news-point,
+    body.dark-mode .news-mini-stats .trust-item,
+    body.dark-mode .news-card,
+    body.dark-mode .news-panel,
+    body.dark-mode .news-price,
+    body.dark-mode .news-step{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.08);box-shadow:0 18px 45px rgba(0,0,0,.30)}
+    body.dark-mode .news-hero h1,
+    body.dark-mode .news-section-title h2,
+    body.dark-mode .news-card h3,
+    body.dark-mode .news-panel h3,
+    body.dark-mode .news-price h3,
+    body.dark-mode .news-step h3,
+    body.dark-mode .news-cta h2{color:#fff}
+    body.dark-mode .news-hero .hero-text,
+    body.dark-mode .news-mini-stats .trust-item span,
+    body.dark-mode .news-point span,
+    body.dark-mode .news-section-title p,
+    body.dark-mode .news-card p,
+    body.dark-mode .news-panel li,
+    body.dark-mode .news-price p,
+    body.dark-mode .news-price li,
+    body.dark-mode .news-step p,
+    body.dark-mode .news-cta p{color:#c8bca7}
+    body.dark-mode .news-mini-stats .trust-item strong,
+    body.dark-mode .news-point strong{color:#fff}
+    body.dark-mode .news-amount{color:#e3b84e}
+    @media (max-width: 1080px){
+      .news-hero-grid,.news-split{grid-template-columns:1fr}
+      .news-mini-stats,.news-grid-3,.news-pricing,.news-steps{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 760px){
+      .news-hero{padding-top:86px;padding-bottom:52px}
+      .news-hero h1{font-size:clamp(2.4rem,10vw,4rem)}
+      .news-points,.news-mini-stats,.news-grid-3,.news-pricing,.news-steps{grid-template-columns:1fr}
+      .news-cta{flex-direction:column;align-items:flex-start}
+    }
+    body:not(.dark-mode) .news-hero{
+    background:linear-gradient(180deg,#fff8ea 0%,#f7f1e5 100%);
+    }
+
+    body:not(.dark-mode) .news-hero:before{
+    background:radial-gradient(circle, rgba(201,162,39,.16), transparent 65%);
+    }
+
+    body:not(.dark-mode) .news-hero h1,
+    body:not(.dark-mode) .news-hero .hero-text,
+    body:not(.dark-mode) .news-point strong,
+    body:not(.dark-mode) .news-point span,
+    body:not(.dark-mode) .news-mini-stats .trust-item strong,
+    body:not(.dark-mode) .news-mini-stats .trust-item span{
+    color:#1f2328;
+    }
+
+    body:not(.dark-mode) .news-point,
+    body:not(.dark-mode) .news-mini-stats .trust-item{
+    background:rgba(255,255,255,.82);
+    border-color:rgba(201,162,39,.14);
+    }
+
+    body:not(.dark-mode) .news-cta{
+    background:linear-gradient(135deg,#fff8ea,#f3ead8);
+    border-color:rgba(201,162,39,.22);
+    }
+
+    body:not(.dark-mode) .news-cta h2,
+    body:not(.dark-mode) .news-cta p{
+    color:#1f2328;
+    }
+  </style>
+</head>
+<body data-page="featured-product">
+  <header id="site-header"></header>
+
+  <main>
+    <section class="news-hero">
+      <div class="container">
+        <div class="news-hero-grid">
+          <div class="news-hero-copy">
+            <span class="eyebrow">News Portal CMS (Software as a Service)</span>
+            <h1>Professional News Website &amp; Content Management System.</h1>
+            <p class="hero-text">By Auxesis Creative Solutions</p>
+            <p class="hero-text">A modern, responsive, and scalable news publishing platform designed for digital news agencies, newspapers, magazines, blogs, media houses, educational institutions, and organizations that regularly publish news or articles.</p>
+            <div class="news-actions">
+              <a href="../contact.html" class="btn btn-primary">Contact Us</a>
+              <a href="../featured-product.html" class="btn btn-secondary">Back to Featured Products</a>
+            </div>
+            <div class="news-points">
+              <div class="news-point"><strong>Fast publishing</strong><span>Manage news, pages, categories, and ads from one dashboard.</span></div>
+              <div class="news-point"><strong>Reader friendly</strong><span>Responsive browsing, search, sharing, and comments.</span></div>
+              <div class="news-point"><strong>SaaS ready</strong><span>Launch quickly with hosting, support, and regular updates.</span></div>
+            </div>
+          </div>
+          <div class="news-showcase">
+            <div class="news-band">
+              <div class="news-video-shell">
+                <div class="news-video-frame">
+                  <video controls poster="../assets/featured-assets/news-web-thumb.png">
+                    <source src="../assets/featured-assets/News-Portal-Sample-Video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="news-mini-stats">
+              <div class="trust-item"><strong>Homepage</strong><span>Featured slider, breaking news, trending stories, and more.</span></div>
+              <div class="trust-item"><strong>Admin Dashboard</strong><span>Manage categories, posts, comments, and website pages.</span></div>
+              <div class="trust-item"><strong>Revenue Ready</strong><span>Advertisement placements for AdSense and sponsored campaigns.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="news-section-title">
+          <h2>Project Overview</h2>
+          <p>The News Portal CMS brings editorial control, content organization, and a polished reader experience into one platform.</p>
+        </div>
+        <div class="news-split">
+          <div class="news-panel">
+            <span class="project-tag">Overview</span>
+            <h3>Centralized content management</h3>
+            <p>Publishers can manage news content, categories, comments, advertisements, and static pages from a single admin dashboard while readers enjoy a fast, responsive experience across desktop, tablet, and mobile.</p>
+          </div>
+          <div class="news-panel">
+            <span class="project-tag">Suitable for</span>
+            <h3>Who can use it</h3>
+            <ul>
+              <li>Digital news portals and local newspapers.</li>
+              <li>Media houses and online magazines.</li>
+              <li>Educational news websites and corporate portals.</li>
+              <li>Organization blogs and community news websites.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="news-section-title">
+          <h2>Front-End Experience</h2>
+          <p>The public website is designed for speed, readability, discovery, and engagement.</p>
+        </div>
+        <div class="news-grid-3">
+          <div class="news-card"><h3>Homepage</h3><p>Featured news slider, breaking news ticker, latest news, popular news, trending news, categories, video news, ads, navigation, search, language selection, and footer links.</p></div>
+          <div class="news-card"><h3>Reading Experience</h3><p>Detailed article pages, related news suggestions, category navigation, social sharing, reader comments, mobile-friendly layout, and fast loading pages.</p></div>
+          <div class="news-card"><h3>Discovery Tools</h3><p>Search news articles, headlines, categories, keywords, popular news, trending articles, latest updates, and improved content discovery.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="news-section-title">
+          <h2>Core Features</h2>
+          <p>Built to support content publishing, monetization, social reach, and audience growth.</p>
+        </div>
+        <div class="news-grid-3">
+          <div class="news-card"><h3>Video News</h3><p>Show video reports, interviews, press conferences, live coverage links, and embedded videos.</p></div>
+          <div class="news-card"><h3>Advertisement Management</h3><p>Homepage banners, sidebar ads, article page ads, footer banners, and promotional sections.</p></div>
+          <div class="news-card"><h3>Social Sharing</h3><p>Facebook, WhatsApp, X, Telegram, LinkedIn, Email, and copy link support.</p></div>
+          <div class="news-card"><h3>Comment System</h3><p>Comments remain pending until reviewed, with approval and spam control for quality moderation.</p></div>
+          <div class="news-card"><h3>Responsive Design</h3><p>Optimized for desktop, laptop, tablet, Android, iPhone, and modern browsers.</p></div>
+          <div class="news-card"><h3>Multi-Language Support</h3><p>Readers can switch between available languages for a localized experience.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="news-section-title">
+          <h2>Admin Dashboard</h2>
+          <p>A powerful backend gives publishers complete control over the website.</p>
+        </div>
+        <div class="news-split">
+          <div class="news-panel">
+            <span class="project-tag">Dashboard overview</span>
+            <h3>Key metrics</h3>
+            <ul>
+              <li>Total news published.</li>
+              <li>Categories and recent posts.</li>
+              <li>Pending comments and website statistics.</li>
+              <li>Quick access menu for daily operations.</li>
+            </ul>
+          </div>
+          <div class="news-panel">
+            <span class="project-tag">Management</span>
+            <h3>What admins can do</h3>
+            <ul>
+              <li>Add, edit, and delete categories.</li>
+              <li>Add, edit, and delete news articles.</li>
+              <li>Approve or reject comments.</li>
+              <li>Manage static pages like About, Contact, Privacy Policy, Terms, and Disclaimer.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="container">
+        <div class="news-section-title">
+          <h2>Pricing</h2>
+          <p>Choose SaaS billing or one-time development based on your business model.</p>
+        </div>
+        <div class="news-pricing">
+          <div class="news-price featured">
+            <span class="project-tag">SaaS</span>
+            <h3>Annual Billing</h3>
+            <div class="news-amount">₹1,699/month</div>
+            <p>For News Portal / Media House / Online Magazine.</p>
+            <ul>
+              <li>Responsive website</li>
+              <li>Admin dashboard</li>
+              <li>Category management</li>
+              <li>News management</li>
+              <li>Hosting support, regular updates, and technical support</li>
+            </ul>
+          </div>
+          <div class="news-price">
+            <span class="project-tag">SaaS</span>
+            <h3>Monthly Billing</h3>
+            <div class="news-amount">₹1,999/month</div>
+            <p>Flexible month-to-month option for publishers who prefer lower commitment.</p>
+            <ul>
+              <li>Responsive website</li>
+              <li>Admin dashboard</li>
+              <li>Category management</li>
+              <li>News management</li>
+              <li>Hosting support, regular updates, and technical support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="news-section-title">
+          <h2>One-Time Development</h2>
+          <p>Choose a custom-built solution with full ownership, tailored features, and a long-term deployment plan.</p>
+        </div>
+        <div class="news-grid-3">
+          <div class="news-card">
+            <span class="project-tag">Basic Build</span>
+            <h3>₹45,000</h3>
+            <p>Best for small publishers who want a clean, essential news website with core publishing features and a simple admin workflow.</p>
+            <ul class="news-list">
+              <li>Responsive website design</li>
+              <li>News posting and categories</li>
+              <li>Basic CMS pages</li>
+              <li>Standard launch setup</li>
+            </ul>
+          </div>
+          <div class="news-card">
+            <span class="project-tag">Professional Build</span>
+            <h3>₹75,000</h3>
+            <p>Ideal for growing media brands that need stronger editorial control, better engagement tools, and more advanced content management.</p>
+            <ul class="news-list">
+              <li>Everything in Basic</li>
+              <li>Comment moderation</li>
+              <li>Advertisement banner sections</li>
+              <li>Search and trending news modules</li>
+            </ul>
+          </div>
+          <div class="news-card">
+            <span class="project-tag">Enterprise Build</span>
+            <h3>₹1,25,000+</h3>
+            <p>Built for large publishers and organizations that need a scalable, custom platform with advanced modules and expansion options.</p>
+            <ul class="news-list">
+              <li>Everything in Professional</li>
+              <li>Multi-language support</li>
+              <li>Video news and live streaming options</li>
+              <li>Custom integrations and premium workflows</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="news-section-title">
+          <h2>What’s Included</h2>
+          <p>Everything needed to launch and manage a complete news portal CMS.</p>
+        </div>
+        <div class="news-grid-3">
+          <div class="news-card"><h3>CMS Core</h3><p>Responsive website, admin dashboard, category management, news management, comment moderation, and CMS pages.</p></div>
+          <div class="news-card"><h3>Growth Tools</h3><p>Advertisement banner management, multi-language support, search functionality, popular and trending news, video news, and social sharing.</p></div>
+          <div class="news-card"><h3>Platform Support</h3><p>Hosting support, regular updates, and technical support for SaaS deployments.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="news-section-title">
+          <h2>Optional Add-ons</h2>
+          <p>Additional modules can be integrated based on business requirements.</p>
+        </div>
+        <div class="news-grid-3">
+          <div class="news-card"><h3>Reporter/Journalist Panel</h3><p>Assign article workflows to editorial teams.</p></div>
+          <div class="news-card"><h3>Mobile Application</h3><p>Android and iOS apps for news consumption.</p></div>
+          <div class="news-card"><h3>Push Notifications</h3><p>Send breaking news alerts directly to readers.</p></div>
+          <div class="news-card"><h3>SEO Management Tools</h3><p>Improve search visibility and article performance.</p></div>
+          <div class="news-card"><h3>Live TV/Streaming</h3><p>Integrate live coverage and event broadcasting.</p></div>
+          <div class="news-card"><h3>E-Paper Module</h3><p>Digitize print-style newspaper publishing.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="news-section-title">
+          <h2>Implementation Process</h2>
+          <p>Most SaaS deployments can be completed within 2–5 business days.</p>
+        </div>
+        <div class="news-steps">
+          <div class="news-step"><span>01</span><h3>Business Registration</h3><p>Confirm project details and service requirements.</p></div>
+          <div class="news-step"><span>02</span><h3>Branding &amp; Setup</h3><p>Domain configuration, website branding, and category setup.</p></div>
+          <div class="news-step"><span>03</span><h3>Content Migration</h3><p>Optional migration of initial news and pages.</p></div>
+          <div class="news-step"><span>04</span><h3>Go Live</h3><p>User training, final checks, and launch.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="news-cta" id="contact">
+          <div>
+            <h2>Build, manage, and grow your digital news platform.</h2>
+            <p>Designed for publishers who want a secure, reliable, and easy-to-use system for daily content updates, audience engagement, and scalable growth.</p>
+          </div>
+          <a href="../contact.html" class="btn btn-primary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/script.js"></script>
+</body>
+</html>
