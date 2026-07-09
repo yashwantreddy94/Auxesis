@@ -4,12 +4,12 @@ async function loadIncludes() {
 
   try {
     if (headerTarget) {
-      const headerResponse = await fetch('include/header.html');
+      const headerResponse = await fetch('../include/header.html');
       headerTarget.innerHTML = await headerResponse.text();
     }
 
     if (footerTarget) {
-      const footerResponse = await fetch('include/footer.html');
+      const footerResponse = await fetch('../include/footer.html');
       footerTarget.innerHTML = await footerResponse.text();
     }
 
