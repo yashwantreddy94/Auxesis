@@ -460,6 +460,14 @@ body.dark-mode .logo-dark-mode{
   background:linear-gradient(135deg, rgba(255,255,255,0.92), rgba(249,249,249,0.88));
 }
 
+.panel-four{
+  background:linear-gradient(135deg, rgba(255,255,255,0.92), rgba(249,249,249,0.88));
+}
+
+.panel-five{
+  background:linear-gradient(135deg, rgba(255,255,255,0.92), rgba(249,249,249,0.88));
+}
+
 .hero-panel p{
   color:var(--gold);
   font-weight:700;
@@ -983,7 +991,9 @@ body.dark-mode .section-dark{
 
 body.dark-mode .panel-one,
 body.dark-mode .panel-two,
-body.dark-mode .panel-three{
+body.dark-mode .panel-three,
+body.dark-mode .panel-four,
+body.dark-mode .panel-five{
   background:linear-gradient(135deg,#202020,#1a1a1a);
 }
 
@@ -1681,4 +1691,75 @@ body.dark-mode .qr-stat{
   background:rgba(255,255,255,.04);
   border-color:rgba(255,255,255,.08);
   box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+
+.feat-tiles{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+  margin-top:28px;
+}
+.feat-tile{
+  display:block;
+  overflow:hidden;
+  border-radius:26px;
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 22px 60px rgba(0,0,0,.18);
+  text-decoration:none;
+  color:inherit;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.feat-tile:hover{
+  transform:translateY(-4px);
+  box-shadow:0 26px 70px rgba(0,0,0,.24);
+  border-color:rgba(201,162,39,.28);
+}
+.feat-thumb-wrap{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:16/9;
+  background:#111;
+}
+.feat-thumb-wrap img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+.feat-tile:hover .feat-thumb-wrap img{
+  transform:scale(1.04);
+}
+.feat-tile-body{
+  padding:22px;
+}
+.feat-tile-body h3{
+  margin:12px 0 10px;
+  font-family:'Outfit',sans-serif;
+  font-size:1.5rem;
+  line-height:1.15;
+  color:var(--text);
+}
+.feat-tile-body p{
+  margin:0;
+  color:var(--muted);
+}
+.feat-tile-body .btn{
+  margin-top:18px;
+  display:inline-flex;
+}
+body:not(.dark-mode) .feat-tile{
+  background:rgba(255,255,255,.86);
+  border-color:rgba(201,162,39,.14);
+}
+body:not(.dark-mode) .feat-tile-body h3,
+body:not(.dark-mode) .feat-tile-body p{
+  color:#1f2328;
+}
+body:not(.dark-mode) .feat-thumb-wrap{
+  background:#f3ead8;
+}
+@media (max-width: 900px){
+  .feat-tiles{grid-template-columns:1fr;}
 }
