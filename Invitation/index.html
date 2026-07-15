@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Double Celebration Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fff8f3;
+      --bg-soft: #fff3eb;
+      --surface: rgba(255, 255, 255, 0.76);
+      --surface-strong: rgba(255, 255, 255, 0.93);
+      --text: #4a2f2c;
+      --muted: #7a5f5b;
+      --primary: #c95579;
+      --primary-dark: #a94061;
+      --secondary: #7b56b0;
+      --gold: #d49a29;
+      --border: rgba(110, 72, 68, 0.12);
+      --shadow: 0 18px 50px rgba(126, 77, 73, 0.12);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255, 199, 214, 0.45), transparent 24%),
+        radial-gradient(circle at 90% 8%, rgba(255, 219, 170, 0.35), transparent 22%),
+        radial-gradient(circle at 50% 100%, rgba(222, 192, 255, 0.18), transparent 22%),
+        linear-gradient(180deg, #fffaf6 0%, #fff4ed 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 24px));
+      margin: 0 auto;
+    }
+
+    .page {
+      padding: 16px 0 56px;
+      position: relative;
+    }
+
+    .floating-decor {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .floating-decor span {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(24px);
+      opacity: 0.35;
+    }
+
+    .floating-decor .d1 {
+      width: 180px;
+      height: 180px;
+      background: rgba(201, 85, 121, 0.18);
+      top: 100px;
+      left: -40px;
+    }
+
+    .floating-decor .d2 {
+      width: 220px;
+      height: 220px;
+      background: rgba(123, 86, 176, 0.14);
+      top: 40%;
+      right: -70px;
+    }
+
+    .floating-decor .d3 {
+      width: 160px;
+      height: 160px;
+      background: rgba(212, 154, 41, 0.15);
+      bottom: 40px;
+      left: 12%;
+    }
+
+    .content-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-badge {
+      width: fit-content;
+      margin: 0 auto 16px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(120, 78, 75, 0.12);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 24px rgba(120, 75, 74, 0.08);
+      text-align: center;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 42px;
+      border-radius: 34px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(255,247,241,0.8));
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(201, 85, 121, 0.10);
+      top: -90px;
+      left: -60px;
+      filter: blur(16px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 999px;
+      background: rgba(123, 86, 176, 0.10);
+      right: -80px;
+      bottom: -110px;
+      filter: blur(18px);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(201, 85, 121, 0.10);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .eyebrow::before {
+      content: "✦";
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      margin-bottom: 16px;
+      color: #7a2850;
+    }
+
+    .hero .lead {
+      font-size: 1.06rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 12px;
+    }
+
+    .hero .sub-lead {
+      font-size: 1rem;
+      max-width: 620px;
+      margin-bottom: 24px;
+    }
+
+    .quote-strip {
+      margin: 22px 0 26px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(212, 154, 41, 0.10);
+      border: 1px solid rgba(212, 154, 41, 0.16);
+      color: #8a5c0d;
+      font-weight: 700;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      min-height: 48px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+      border: 1px solid transparent;
+      text-align: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #de7494);
+      box-shadow: 0 14px 28px rgba(201, 85, 121, 0.22);
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.85);
+      color: var(--text);
+      border-color: rgba(110, 72, 68, 0.16);
+    }
+
+    .hero-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .photo-card {
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 14px;
+      box-shadow: 0 12px 24px rgba(125, 88, 85, 0.08);
+    }
+
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #f2e5df;
+    }
+
+    .photo-card h3 {
+      font-size: 1.2rem;
+      margin-top: 14px;
+      color: #6d2954;
+    }
+
+    .photo-card p {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      margin-top: 26px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 28px rgba(123, 82, 79, 0.08);
+    }
+
+    .card h2 {
+      font-size: 1.95rem;
+      color: #633053;
+      margin-bottom: 14px;
+    }
+
+    .card p + p {
+      margin-top: 12px;
+    }
+
+    .mini-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .mini-item {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(110, 72, 68, 0.10);
+      border-radius: 18px;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .mini-item span {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .mini-item strong {
+      display: block;
+      font-size: 0.95rem;
+      color: #6f2d56;
+    }
+
+    .mini-item small {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .details-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .detail-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(110, 72, 68, 0.10);
+    }
+
+    .detail-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #7a2850;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .blessing-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255,244,228,0.94), rgba(255,250,244,0.94));
+      border: 1px solid rgba(212, 154, 41, 0.18);
+      color: #8c6011;
+      font-weight: 600;
+    }
+
+    .promo {
+      margin-top: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(250,245,239,0.96));
+    }
+
+    .promo-tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .promo p {
+      color: #625b59;
+    }
+
+    .footer-note {
+      text-align: center;
+      padding-top: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        padding: 30px;
+      }
+
+      .hero-inner,
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding: 12px 0 42px;
+      }
+
+      .top-badge {
+        font-size: 12px;
+        padding: 9px 14px;
+        margin-bottom: 14px;
+      }
+
+      .hero {
+        padding: 22px 16px;
+        border-radius: 24px;
+      }
+
+      .hero-photos,
+      .mini-highlight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 22px 16px;
+        border-radius: 22px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 9vw, 3rem);
+      }
+
+      .card h2 {
+        font-size: 1.6rem;
+      }
+
+      .quote-strip {
+        padding: 14px 14px;
+        font-size: 0.95rem;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .photo-card {
+        padding: 12px;
+      }
+
+      .photo-card img {
+        aspect-ratio: 4 / 4.6;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: min(100% - 14px, 100%);
+      }
+
+      .hero .lead,
+      .hero .sub-lead,
+      .card p,
+      .detail-item,
+      .photo-card p {
+        font-size: 0.95rem;
+      }
+
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.06em;
+      }
+
+      .detail-item {
+        padding: 14px;
+      }
+
+      .mini-item {
+        padding: 14px 12px;
+      }
+    }
+    .rsvp-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .contact-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        background: rgba(201, 85, 121, 0.08);
+        border: 1px solid rgba(201, 85, 121, 0.16);
+        color: #7a2850;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.2s ease;
+    }
+
+    .contact-link:hover {
+        background: rgba(201, 85, 121, 0.14);
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-decor" aria-hidden="true">
+    <span class="d1"></span>
+    <span class="d2"></span>
+    <span class="d3"></span>
+  </div>
+
+  <main class="page">
+    <div class="container content-wrap">
+      <div class="top-badge">Birthday & Annaprashan Invitation</div>
+
+      <section class="hero">
+        <div class="hero-inner">
+          <div>
+            <div class="eyebrow">You are invited to celebrate</div>
+            <h1>A Double Celebration of Joy</h1>
+            <p class="lead">
+              With love and happiness, we invite you to celebrate Toorvi’s 5th Birthday
+              and Raeeli’s Annaprashan ceremony with us.
+            </p>
+            <p class="sub-lead">
+              Join us for a beautiful day filled with blessings, laughter, family moments,
+              and special memories that we will cherish forever.
+            </p>
+
+            <div class="quote-strip">
+              Two little blessings, one unforgettable celebration.
+            </div>
+
+            <div class="button-row">
+              <a href="#rsvp" class="btn btn-primary">RSVP Now</a>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Juihal+The+Ethnic+Kitchen+Opposite+Heritage+Hotel+Above+Ivy+Grand+Malow+Ali+Jorhat+785001"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline"
+              >
+                View Location on Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-photos">
+            <article class="photo-card">
+              <img src="child1.png" alt="Photo of Toorvi" />
+              <h3>Toorvi</h3>
+              <p>Celebrating her 5th birthday with love, laughter, and happiness.</p>
+            </article>
+
+            <article class="photo-card">
+              <img src="child2.png" alt="Photo of Raeeli" />
+              <h3>Raeeli</h3>
+              <p>Welcoming her annaprashan with blessings, warmth, and family joy.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-grid">
+        <article class="card">
+          <h2>With Love, From Our Family</h2>
+          <p>
+            We are delighted to invite you and your family to be part of two precious
+            milestones in our children’s lives — Toorvi’s 5th Birthday and Raeeli’s
+            Annaprashan ceremony.
+          </p>
+          <p>
+            Your presence, blessings, and warm wishes will make this day even more special
+            and meaningful for us.
+          </p>
+          <p>
+            Please join us for the ceremony, celebration, lunch, and a day full of warmth,
+            togetherness, and memorable moments.
+          </p>
+
+          <div class="mini-highlight-grid">
+            <div class="mini-item">
+              <span>🎂</span>
+              <strong>Birthday Joy</strong>
+              <small>Toorvi turns 5</small>
+            </div>
+            <div class="mini-item">
+              <span>🍚</span>
+              <strong>Annaprashan</strong>
+              <small>Raeeli’s special ritual</small>
+            </div>
+            <div class="mini-item">
+              <span>💖</span>
+              <strong>Family Time</strong>
+              <small>Lunch, love, and blessings</small>
+            </div>
+          </div>
+        </article>
+
+        <aside class="card" id="rsvp">
+          <h2>Event Details</h2>
+
+          <div class="details-list">
+            <div class="detail-item">
+              <strong>Date</strong>
+              Sunday, 19 July 2026
+            </div>
+
+            <div class="detail-item">
+              <strong>Time</strong>
+              1:00 PM onwards
+            </div>
+
+            <div class="detail-item">
+              <strong>Venue</strong>
+              Juihal, The Ethnic Kitchen, Opposite Heritage Hotel, Above Ivy Grand, Malow Ali, Jorhat, PIN 785001
+            </div>
+
+            <div class="detail-item">
+                <strong>RSVP</strong>
+                <div class="rsvp-links">
+                    <a href="tel:+919854062223" class="contact-link">Call Anindita</a>
+                    <a href="tel:+918638916254" class="contact-link">Call Vicky</a>
+                </div>
+            </div>
+          </div>
+
+          <div class="blessing-box">
+            Your kind presence will make our celebration even more beautiful.
+          </div>
+
+          <div class="button-row" style="margin-top: 18px;">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Juihal+The+Ethnic+Kitchen+Opposite+Heritage+Hotel+Above+Ivy+Grand+Malow+Ali+Jorhat+785001"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              View Location on Google Maps
+            </a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="card promo">
+        <div class="promo-tag">Presented with care</div>
+        <h2>Auxesis Creative Solutions</h2>
+        <p>
+          This invitation webpage is presented by Auxesis Creative Solutions, a team that builds
+          modern websites, scalable business applications, e-commerce systems, dashboards, landing
+          pages, and digital growth support for growing businesses.
+        </p>
+        <p>
+          Auxesis focuses on clear messaging, practical design, growth-ready systems, and ongoing
+          support that helps brands improve visibility, trust, and business growth.
+        </p>
+
+        <div class="button-row" style="margin-top: 18px;">
+          <a
+            href="https://auxesiscreative.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            Visit Auxesis Creative
+          </a>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Your presence and blessings will make our day even more special.
+      </div>
+    </div>
+  </main>
+</body>
+</html>
